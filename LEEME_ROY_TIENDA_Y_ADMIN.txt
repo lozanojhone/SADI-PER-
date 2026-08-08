@@ -1,0 +1,23 @@
+SADI PERÚ TIENDA Y SADI PERÚ ADMIN - INSTALACIONES SEPARADAS
+
+1. SADI Perú Tienda
+- Nombre instalado: SADI Perú Tienda
+- Entrada: index.html
+- Se ofrece a clientes desde la tienda.
+
+2. SADI Perú Admin
+- Nombre instalado: SADI Perú Admin
+- Entrada privada: admin.html o index.html?admin=1
+- Abre directamente el modo administrador.
+- No se ofrece desde la vista normal de clientes.
+- Para instalarlo, el administrador debe abrir admin.html, iniciar sesión y usar el instalador del navegador.
+
+iPhone/iPad:
+- Abrir admin.html en Safari.
+- Compartir > Añadir a pantalla de inicio.
+
+Android/PC:
+- Abrir admin.html en Chrome/Edge.
+- Usar Instalar aplicación cuando el navegador lo habilite.
+
+Subir todos los archivos juntos. No subir solo index.html.

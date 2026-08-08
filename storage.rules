@@ -1,0 +1,24 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    function signedIn() { return request.auth != null; }
+    function owner() { return signedIn() && request.auth.uid == 'sr7PqTYzkySBndnmFDcaVz8v6Iz2'; }
+    function admin() {
+      return signedIn()
+        && firestore.exists(/databases/(default)/documents/sadi_admins/$(request.auth.uid))
+        && firestore.get(/databases/(default)/documents/sadi_admins/$(request.auth.uid)).data.active == true;
+    }
+    function staffCanUpload() {
+      return signedIn()
+        && firestore.exists(/databases/(default)/documents/sadi_users/$(request.auth.uid))
+        && firestore.get(/databases/(default)/documents/sadi_users/$(request.auth.uid)).data.active == true
+        && firestore.get(/databases/(default)/documents/sadi_users/$(request.auth.uid)).data.permissions is list
+        && firestore.get(/databases/(default)/documents/sadi_users/$(request.auth.uid)).data.permissions.hasAny(['*','catalog','gallery','settings']);
+    }
+    match /sadi/{allPaths=**} {
+      allow read: if true;
+      allow write: if owner() || admin() || staffCanUpload();
+    }
+    match /{allPaths=**} { allow read, write: if false; }
+  }
+}

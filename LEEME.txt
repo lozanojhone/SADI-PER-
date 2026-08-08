@@ -1,0 +1,12 @@
+SADI PERÚ - TIENDA Y ADMIN
+
+Proyecto independiente conectado a Firebase sadi-peru.
+Incluye tienda femenina, catálogo administrable, pedidos, clientes, ventas, inventario,
+usuarios/roles, auditoría, promociones, galería, configuración, analítica QR, PWA y WhatsApp.
+
+Firebase:
+- Publicar firestore.rules en Firestore > Reglas.
+- Activar Storage para cargar imágenes y publicar storage.rules.
+- Authentication Email/Password debe estar habilitado.
+
+Datos financieros de Yape/Plin NO fueron inventados: configúralos desde el panel cuando tengas los datos reales de SADI PERÚ.

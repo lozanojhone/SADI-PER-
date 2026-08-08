@@ -1,0 +1,24 @@
+/* SADI PERÚ 5.2 — negro, blanco y dorado por defecto, totalmente administrable. */
+:root{
+ --roy-primary:#D4AF37;--roy-primary-dark:#A87B12;--roy-primary-light:#F5D76E;
+ --roy-secondary:#FFFFFF;--roy-background:#080808;--roy-text:#FFFFFF;
+ --roy-gold:var(--roy-primary);--roy-gold-dark:var(--roy-primary-dark);--roy-gold-light:var(--roy-primary-light);
+ --orange:var(--roy-primary);--orange2:var(--roy-primary-dark);--green:var(--roy-primary);
+ --brand-primary:var(--roy-primary);--brand-secondary:var(--roy-secondary);--brand-bg:var(--roy-background);--brand-text:var(--roy-text);
+}
+html,body{background:var(--roy-background)!important;color:var(--roy-text)!important}
+.orange,.green,.product-brand,.price,.admin-title span,.section-title span,.title span,.eyebrow,.nav-link.active,.navlinks a.active,.admin-menu button.active{color:var(--roy-primary)!important}
+.announce{background:linear-gradient(100deg,var(--roy-primary-dark),var(--roy-primary-light),var(--roy-primary))!important;color:var(--roy-background)!important}
+.btn-primary,.tag,.tab.active,.hero-dot.active,.category-chip.active,.filter-chip.active,.install-app-btn,.install-prompt-btn,.choose-options-btn,#quickAddBtn,.checkout-submit,.payment-option-v32.active .payment-selector-v32 span:after,.badge-count,.wish.active{background:linear-gradient(135deg,var(--roy-primary-light),var(--roy-primary),var(--roy-primary-dark))!important;border-color:var(--roy-primary)!important;color:var(--roy-background)!important}
+.btn-primary:hover,.choose-options-btn:hover,#quickAddBtn:hover{box-shadow:0 12px 34px color-mix(in srgb,var(--roy-primary) 30%,transparent)!important;filter:brightness(1.06)}
+.field:focus,.select:focus,.textarea:focus,input:focus,select:focus,textarea:focus,.product-card:hover,.quick-action:hover,.permission-item:hover,.payment-option-v32:hover,.payment-option-v32.active,.quick-thumb.active,.product-thumb.active,.gallery-thumb.active{border-color:var(--roy-primary)!important;box-shadow:0 0 0 3px color-mix(in srgb,var(--roy-primary) 16%,transparent)!important}
+input[type=checkbox],input[type=radio],input[type=range]{accent-color:var(--roy-primary)!important}
+.online{background:var(--roy-primary)!important;box-shadow:0 0 14px color-mix(in srgb,var(--roy-primary) 80%,transparent)!important}
+.stock,.status.confirmado,.status.entregado,.user-state-active,.v3-user-tags .on,.owner-badge,.kpi small{color:var(--roy-primary-light)!important}
+.status.confirmado,.status.entregado,.v3-user-tags .on{background:color-mix(in srgb,var(--roy-primary) 12%,transparent)!important}
+.owner-badge,.owner-lock{border-color:color-mix(in srgb,var(--roy-primary) 35%,transparent)!important;background:color-mix(in srgb,var(--roy-primary) 10%,transparent)!important;color:var(--roy-primary-light)!important}
+.admin-menu button:hover,.admin-menu button.active{background:linear-gradient(90deg,color-mix(in srgb,var(--roy-primary) 22%,transparent),color-mix(in srgb,var(--roy-primary) 4%,transparent))!important;border-left-color:var(--roy-primary)!important}
+.wa-float{background:linear-gradient(135deg,var(--roy-primary-light),var(--roy-primary-dark))!important;color:var(--roy-background)!important;box-shadow:0 12px 30px color-mix(in srgb,var(--roy-primary) 30%,transparent)!important}
+.navlinks a:after{background:var(--roy-primary)!important}.navlinks a:hover{color:var(--roy-primary)!important}
+.logo-mark,.brand-logo,.admin-logo,.logo-mark img,.brand-logo img,.admin-logo img{filter:none!important}
+::selection{background:var(--roy-primary);color:var(--roy-background)}
