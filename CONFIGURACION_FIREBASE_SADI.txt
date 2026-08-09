@@ -1,0 +1,12 @@
+SADI PERÚ - CONFIGURACIÓN FIREBASE
+
+Proyecto: sadi-peru
+App ID: 1:977904336611:web:f8d37975bb1cd146494fd6
+UID propietario: sr7PqTYzkySBndnmFDcaVz8v6Iz2
+
+1. Authentication: Correo/Contraseña habilitado.
+2. Firestore: base (default) y reglas publicadas desde firestore.rules.
+3. Firebase Storage: NO SE USA.
+
+La tienda y el administrador usan Authentication + Firestore.
+Las imágenes de productos se guardan comprimidas en sadi_product_images.

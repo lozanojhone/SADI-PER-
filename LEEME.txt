@@ -1,0 +1,9 @@
+SADI PERÚ - TIENDA Y ADMIN
+
+Configuración necesaria:
+1. Firebase Authentication: habilitar Correo/Contraseña.
+2. Firestore: publicar firestore.rules.
+3. Publicar el sitio (Firebase Hosting recomendado).
+
+Este proyecto NO usa Firebase Storage.
+Las imágenes de productos se comprimen y guardan en Firestore mediante sadi_product_images.

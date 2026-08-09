@@ -1,0 +1,111 @@
+/* SADI PERÚ 3.3 - controles visibles y consistentes */
+:root{color-scheme:dark}
+
+/* Todos los selectores conservan texto y flecha visibles */
+select,.select,.field[type="select"]{
+  -webkit-appearance:none;
+  appearance:none;
+  color-scheme:light;
+  color:#111!important;
+  background-color:#fff!important;
+  border:2px solid #b9c0b3!important;
+  background-image:
+    linear-gradient(45deg,transparent 50%,#111 50%),
+    linear-gradient(135deg,#111 50%,transparent 50%);
+  background-position:
+    calc(100% - 20px) 50%,
+    calc(100% - 14px) 50%;
+  background-size:6px 6px,6px 6px;
+  background-repeat:no-repeat;
+  padding-right:44px!important;
+  font-weight:700;
+  min-height:46px;
+  opacity:1!important;
+  -webkit-text-fill-color:#111!important;
+}
+select:hover,.select:hover{
+  border-color:#C9A227!important;
+}
+select:focus,.select:focus{
+  color:#111!important;
+  background-color:#fff!important;
+  border-color:#D4AF37!important;
+  box-shadow:0 0 0 4px rgba(147,230,0,.18)!important;
+  outline:none!important;
+}
+select:disabled,.select:disabled{
+  color:#505050!important;
+  background-color:#e9ece5!important;
+  border-color:#c9cdc5!important;
+  opacity:1!important;
+  -webkit-text-fill-color:#505050!important;
+}
+select option,
+.select option,
+select optgroup{
+  color:#111!important;
+  background:#fff!important;
+  font-size:16px!important;
+  font-weight:700!important;
+}
+select option:checked{
+  color:#fff!important;
+  background:#1769d2!important;
+}
+
+/* Checkout: bloque de entrega más claro */
+#checkoutModal .form-group label{
+  color:#fff!important;
+  font-weight:900!important;
+  letter-spacing:.8px;
+}
+#checkoutModal #checkoutDelivery{
+  min-height:52px;
+  font-size:16px!important;
+  border-radius:13px!important;
+  border-color:#9aab8b!important;
+}
+#checkoutModal #checkoutDelivery:focus{
+  border-color:#D4AF37!important;
+}
+#checkoutModal .field{
+  color:#111!important;
+  background:#fff!important;
+  border:2px solid #c7ccc1!important;
+  opacity:1!important;
+  -webkit-text-fill-color:#111!important;
+}
+#checkoutModal .field::placeholder{color:#666!important;opacity:1}
+#checkoutModal input[readonly]{
+  color:#111!important;
+  background:#f5f7f1!important;
+  border-color:#d1d6cb!important;
+}
+#checkoutModal #pickupNotice,
+#checkoutModal #pickupNotice *{
+  color:#111!important;
+  opacity:1!important;
+}
+#checkoutModal #pickupNotice small{color:#555!important}
+
+/* Selectores de producto y filtros: visibles sin perder identidad oscura */
+.product-options select,
+#page-tienda .filters select,
+.admin-shell select,
+.modal-card:not(.checkout-card) select{
+  color:#111!important;
+  background-color:#fff!important;
+  border-color:#b9c0b3!important;
+  -webkit-text-fill-color:#111!important;
+}
+
+/* Casillas y radios con acento de marca */
+input[type="radio"],input[type="checkbox"]{
+  accent-color:#D4AF37;
+}
+
+@media(max-width:560px){
+  select,.select{min-height:48px;font-size:15px!important;padding-left:13px!important}
+  select option,.select option{font-size:16px!important}
+  #checkoutModal #checkoutDelivery{min-height:54px;font-size:16px!important}
+}

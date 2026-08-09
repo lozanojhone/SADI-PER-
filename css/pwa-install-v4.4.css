@@ -1,0 +1,17 @@
+/* SADI PERÚ 4.4 - Instalacion PWA guiada */
+.roy-install-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap}
+.roy-install-btn i{font-size:14px}
+.roy-install-icon-btn{position:relative}
+.roy-install-icon-btn::after{content:'';position:absolute;right:5px;top:5px;width:7px;height:7px;background:#D4AF37;border-radius:50%;box-shadow:0 0 10px #D4AF37}
+.roy-install-icon-btn.is-installed::after{display:none}
+.roy-pwa-banner{position:fixed;left:50%;bottom:18px;z-index:10050;transform:translate(-50%,24px);width:min(560px,calc(100% - 24px));display:flex;align-items:center;gap:14px;padding:14px 16px;background:rgba(10,10,10,.97);border:1px solid rgba(212,175,55,.38);border-radius:18px;box-shadow:0 18px 55px rgba(0,0,0,.5),0 0 25px rgba(212,175,55,.09);opacity:0;pointer-events:none;transition:.25s ease}
+.roy-pwa-banner.show{opacity:1;pointer-events:auto;transform:translate(-50%,0)}
+.roy-pwa-banner img{width:52px;height:52px;object-fit:contain;background:#050505;border-radius:13px;padding:5px;flex:0 0 auto}
+.roy-pwa-banner-copy{min-width:0;flex:1}.roy-pwa-banner-copy b{display:block;color:#fff;font-size:14px}.roy-pwa-banner-copy span{display:block;color:#aaa;font-size:11px;line-height:1.35;margin-top:3px}
+.roy-pwa-banner-actions{display:flex;gap:8px;align-items:center}.roy-pwa-banner .btn{min-height:40px;padding:0 15px}.roy-pwa-banner-close{border:0;background:transparent;color:#bbb;font-size:20px;cursor:pointer;padding:8px}
+.roy-install-modal-card{width:min(560px,100%);padding:28px}.roy-install-hero{display:flex;align-items:center;gap:16px;margin:12px 0 20px}.roy-install-hero img{width:78px;height:78px;object-fit:contain;background:#050505;border:1px solid #242424;border-radius:20px;padding:8px}.roy-install-hero h3{font-size:22px;margin:0;color:#fff}.roy-install-hero p{margin:5px 0 0;color:#aaa;line-height:1.5}
+.roy-install-steps{display:grid;gap:10px;margin:16px 0}.roy-install-step{display:flex;gap:12px;align-items:flex-start;background:#141414;border:1px solid #292929;border-radius:14px;padding:13px}.roy-install-step strong{display:grid;place-items:center;width:27px;height:27px;flex:0 0 auto;border-radius:50%;background:#D4AF37;color:#050505}.roy-install-step b{display:block;color:#fff;margin-bottom:3px}.roy-install-step span{font-size:11px;color:#aaa;line-height:1.45}
+.roy-install-status{padding:12px 14px;border-radius:12px;background:#101010;border:1px solid #292929;color:#bbb;font-size:11px;line-height:1.5;margin-top:12px}.roy-install-status.success{border-color:rgba(212,175,55,.5);color:#F2DD91}.roy-install-status.warning{border-color:rgba(255,184,0,.45);color:#ffd36b}
+.admin-menu .roy-admin-install{color:#F2DD91;border-color:rgba(212,175,55,.2)}
+@media(max-width:760px){.nav-actions .roy-install-label{display:none}.roy-pwa-banner{align-items:flex-start;flex-wrap:wrap}.roy-pwa-banner-copy{padding-right:20px}.roy-pwa-banner-actions{width:100%}.roy-pwa-banner-actions .btn{flex:1}.roy-pwa-banner-close{position:absolute;right:8px;top:7px}.roy-install-modal-card{padding:22px 18px}.roy-install-hero img{width:64px;height:64px}.roy-install-hero h3{font-size:19px}}
+@media(display-mode:standalone){.roy-install-entry{display:none!important}}

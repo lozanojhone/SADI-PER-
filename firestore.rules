@@ -1,0 +1,47 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function owner() { return signedIn() && request.auth.uid == 'sr7PqTYzkySBndnmFDcaVz8v6Iz2'; }
+    function adminDoc() { return signedIn() && exists(/databases/$(database)/documents/sadi_admins/$(request.auth.uid)) && get(/databases/$(database)/documents/sadi_admins/$(request.auth.uid)).data.active == true && get(/databases/$(database)/documents/sadi_admins/$(request.auth.uid)).data.role == 'admin'; }
+    function hasEmail() { return signedIn() && request.auth.token.email != null; }
+    function staffExists() { return signedIn() && (exists(/databases/$(database)/documents/sadi_users/$(request.auth.uid)) || (hasEmail() && exists(/databases/$(database)/documents/sadi_users/$(request.auth.token.email)))); }
+    function staff() { return exists(/databases/$(database)/documents/sadi_users/$(request.auth.uid)) ? get(/databases/$(database)/documents/sadi_users/$(request.auth.uid)).data : get(/databases/$(database)/documents/sadi_users/$(request.auth.token.email)).data; }
+    function activeStaff() { return staffExists() && staff().active == true; }
+    function hasPermission(permission) { return owner() || adminDoc() || (activeStaff() && staff().permissions is list && staff().permissions.hasAny(['*', permission])); }
+    function securityAdmin() { return owner() || adminDoc() || (activeStaff() && staff().role == 'Administrador' && staff().permissions is list && staff().permissions.hasAny(['*'])); }
+    function privileged(data) { return data.role == 'Administrador' || (data.permissions is list && data.permissions.hasAny(['*','users'])); }
+    function validUser(data) { return data.name is string && data.email is string && data.role is string && data.active is bool && data.permissions is list && data.permissions.size() <= 20; }
+    function validStoreEvent(data) {
+      return data.sessionId is string && data.sessionId.size() >= 8 && data.sessionId.size() <= 150
+        && data.source is string && data.source.size() >= 2 && data.source.size() <= 100
+        && ((data.eventType is string && data.eventType in ['VISIT','CATALOG_VISIT','STORE_VISIT','STORE_BROWSE','CATALOG_TO_STORE','PRODUCT_VIEW','ADD_TO_CART','CHECKOUT_OPEN','ORDER_CREATED'])
+          || (data.event is string && data.event in ['VISIT','CATALOG_VISIT','STORE_VISIT','STORE_BROWSE','CATALOG_TO_STORE','PRODUCT_VIEW','ADD_TO_CART','CHECKOUT_OPEN','ORDER_CREATED']));
+    }
+    match /sadi_admins/{id} { allow read: if signedIn() && (request.auth.uid == id || securityAdmin()); allow write: if owner(); }
+    match /sadi_users/{id} {
+      allow read: if securityAdmin() || (signedIn() && (request.auth.uid == id || resource.data.uid == request.auth.uid || (hasEmail() && id == request.auth.token.email)));
+      allow create: if validUser(request.resource.data) && (owner() || (securityAdmin() && !privileged(request.resource.data) && request.resource.data.uid != request.auth.uid));
+      allow update: if validUser(request.resource.data) && (owner() || (securityAdmin() && !privileged(resource.data) && !privileged(request.resource.data) && resource.data.uid != request.auth.uid));
+      allow delete: if owner() || (securityAdmin() && !privileged(resource.data) && resource.data.uid != request.auth.uid);
+    }
+    match /sadi_user_audit/{id} {
+      allow read: if securityAdmin();
+      allow create: if signedIn() && request.resource.data.actorUid == request.auth.uid && (((request.resource.data.action == 'PASSWORD_CHANGE') && request.resource.data.targetUid == request.auth.uid) || ((request.resource.data.action == 'PASSWORD_RESET_SENT') && (request.resource.data.targetUid == request.auth.uid || securityAdmin())) || (securityAdmin() && request.resource.data.action in ['CREATE','UPDATE','ROLE_CHANGE','PERMISSIONS_CHANGE','STATUS_CHANGE','DELETE']));
+      allow update, delete: if false;
+    }
+    match /sadi_products/{id} { allow read: if true; allow write: if hasPermission('catalog'); }
+    match /sadi_product_images/{id} { allow read: if true; allow write: if hasPermission('catalog'); }
+    match /sadi_categories/{id} { allow read: if true; allow write: if hasPermission('catalog'); }
+    match /sadi_media/{id} { allow read: if true; allow write: if hasPermission('gallery'); }
+    match /sadi_promotions/{id} { allow read: if true; allow write: if hasPermission('promotions'); }
+    match /sadi_settings/{id} { allow read: if true; allow write: if hasPermission('settings'); }
+    match /sadi_shipping/{id} { allow read: if true; allow write: if hasPermission('shipping'); }
+    match /sadi_orders/{id} { allow create: if true; allow read, update, delete: if hasPermission('orders'); }
+    match /sadi_messages/{id} { allow create: if true; allow read, update, delete: if hasPermission('messages'); }
+    match /sadi_reviews/{id} { allow create: if true; allow read: if hasPermission('reviews') || resource.data.approved == true; allow update, delete: if hasPermission('reviews'); }
+    match /sadi_inventory/{id} { allow read, write: if hasPermission('inventory'); }
+    match /sadi_store_events/{eventId} { allow create: if validStoreEvent(request.resource.data); allow read: if hasPermission('analytics'); allow update, delete: if false; }
+    match /{document=**} { allow read, write: if false; }
+  }
+}
